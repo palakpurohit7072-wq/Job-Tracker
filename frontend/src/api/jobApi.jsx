@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api/jobs",
+ 
+  baseURL: "https://job-tracker-jrps.onrender.com/api/jobs",
 });
 
 // Automatically add JWT token to every request
