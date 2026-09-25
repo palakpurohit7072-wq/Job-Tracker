@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import AuthLayout from "../layouts/AuthLayout";
 import MainLayout from "../layouts/MainLayout";
-import ProtectedRoute from "../components/ProtectedRoute";
+import ProtectedRoute from "../Components/ProtectedRoute";
 
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
