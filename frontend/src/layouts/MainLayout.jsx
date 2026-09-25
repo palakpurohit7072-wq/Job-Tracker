@@ -8,15 +8,21 @@ function MainLayout() {
       <Navbar />
 
       <div className="container-fluid">
+
         <div className="row">
-          <div className="col-2 p-0">
+
+          {/* Sidebar */}
+          <div className="col-12 col-lg-2 p-0">
             <Sidebar />
           </div>
 
-          <div className="col-10 p-4">
+          {/* Main Content */}
+          <main className="col-12 col-lg-10 p-3 p-md-4">
             <Outlet />
-          </div>
+          </main>
+
         </div>
+
       </div>
     </>
   );

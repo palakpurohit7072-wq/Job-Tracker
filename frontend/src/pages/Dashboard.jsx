@@ -35,78 +35,92 @@ function Dashboard() {
     switch (status) {
       case "Applied":
         return "bg-primary";
+
       case "Interview":
         return "bg-warning text-dark";
+
       case "Offer":
         return "bg-success";
+
       case "Rejected":
         return "bg-danger";
+
       default:
         return "bg-secondary";
     }
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid py-3 py-md-4">
 
-      <h2 className="mb-4 text-center text-md-start">
-        Dashboard
-      </h2>
+      {/* Heading */}
+      <div className="mb-4">
+        <h2 className="fw-bold mb-1">
+          Dashboard
+        </h2>
 
-      {/* Stats Cards */}
+        <p className="text-secondary mb-0">
+          Track your job applications and progress
+        </p>
+      </div>
 
+
+      {/* Stats */}
       <div className="row g-3 mb-4">
 
-        <div className="col-6 col-md-6 col-lg-3">
-          <div className="card shadow-sm border-0 h-100">
+        <div className="col-12 col-sm-6 col-lg-3">
+          <div className="card border-0 shadow-sm h-100">
             <div className="card-body text-center py-4">
-              <h6 className="text-muted mb-2">
+              <h6 className="text-secondary">
                 Total Applications
               </h6>
 
-              <h3 className="fw-bold">
+              <h3 className="fw-bold mb-0">
                 {totalJobs}
               </h3>
             </div>
           </div>
         </div>
 
-        <div className="col-6 col-md-6 col-lg-3">
-          <div className="card shadow-sm border-0 h-100">
+
+        <div className="col-12 col-sm-6 col-lg-3">
+          <div className="card border-0 shadow-sm h-100">
             <div className="card-body text-center py-4">
-              <h6 className="text-muted mb-2">
+              <h6 className="text-secondary">
                 Applied
               </h6>
 
-              <h3 className="fw-bold text-primary">
+              <h3 className="fw-bold text-primary mb-0">
                 {appliedJobs}
               </h3>
             </div>
           </div>
         </div>
 
-        <div className="col-6 col-md-6 col-lg-3">
-          <div className="card shadow-sm border-0 h-100">
+
+        <div className="col-12 col-sm-6 col-lg-3">
+          <div className="card border-0 shadow-sm h-100">
             <div className="card-body text-center py-4">
-              <h6 className="text-muted mb-2">
-                Interview
+              <h6 className="text-secondary">
+                Interviews
               </h6>
 
-              <h3 className="fw-bold text-warning">
+              <h3 className="fw-bold text-warning mb-0">
                 {interviewJobs}
               </h3>
             </div>
           </div>
         </div>
 
-        <div className="col-6 col-md-6 col-lg-3">
-          <div className="card shadow-sm border-0 h-100">
+
+        <div className="col-12 col-sm-6 col-lg-3">
+          <div className="card border-0 shadow-sm h-100">
             <div className="card-body text-center py-4">
-              <h6 className="text-muted mb-2">
+              <h6 className="text-secondary">
                 Offers
               </h6>
 
-              <h3 className="fw-bold text-success">
+              <h3 className="fw-bold text-success mb-0">
                 {offerJobs}
               </h3>
             </div>
@@ -115,83 +129,83 @@ function Dashboard() {
 
       </div>
 
+
       {/* Recent Applications */}
+      <div className="card border-0 shadow-sm">
 
-      <div className="card shadow-sm border-0">
-
-        <div className="card-header bg-white">
-          <h5 className="mb-0 text-center text-md-start">
+        <div className="card-header bg-white py-3">
+          <h5 className="mb-0 fw-semibold">
             Recent Applications
           </h5>
         </div>
 
-        <div className="card-body p-0">
+        <div className="table-responsive">
 
-          <div className="table-responsive">
+          <table className="table table-hover align-middle mb-0">
 
-            <table className="table table-hover align-middle mb-0">
+            <thead className="table-light">
+              <tr>
+                <th>Company</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
 
-              <thead className="table-light">
+            <tbody>
+
+              {jobs.length > 0 ? (
+
+                jobs
+                  .slice()
+                  .reverse()
+                  .slice(0, 5)
+                  .map((job) => (
+
+                    <tr key={job._id}>
+
+                      <td>
+                        {job.company}
+                      </td>
+
+                      <td>
+                        {job.role}
+                      </td>
+
+                      <td>
+                        <span
+                          className={`badge ${getBadgeClass(
+                            job.status
+                          )}`}
+                        >
+                          {job.status}
+                        </span>
+                      </td>
+
+                      <td>
+                        {job.date}
+                      </td>
+
+                    </tr>
+
+                  ))
+
+              ) : (
 
                 <tr>
-                  <th>Company</th>
-                  <th>Role</th>
-                  <th>Status</th>
-                  <th>Date</th>
+                  <td
+                    colSpan="4"
+                    className="text-center text-secondary py-4"
+                  >
+                    No applications found.
+                  </td>
                 </tr>
 
-              </thead>
+              )}
 
-              <tbody>
+            </tbody>
 
-                {jobs.length > 0 ? (
-
-                  jobs
-                    .slice()
-                    .reverse()
-                    .slice(0, 5)
-                    .map((job) => (
-
-                      <tr key={job._id}>
-
-                        <td>{job.company}</td>
-
-                        <td>{job.role}</td>
-
-                        <td>
-                          <span
-                            className={`badge ${getBadgeClass(job.status)}`}
-                          >
-                            {job.status}
-                          </span>
-                        </td>
-
-                        <td>{job.date}</td>
-
-                      </tr>
-
-                    ))
-
-                ) : (
-
-                  <tr>
-
-                    <td
-                      colSpan="4"
-                      className="text-center py-4"
-                    >
-                      No applications found.
-                    </td>
-
-                  </tr>
-
-                )}
-
-              </tbody>
-
-            </table>
-
-          </div>
+          </table>
 
         </div>
 

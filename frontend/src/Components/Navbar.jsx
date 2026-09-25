@@ -15,26 +15,43 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container">
-        <Link className="navbar-brand" to="/dashboard">
+    <nav className="navbar navbar-dark bg-dark">
+
+      <div className="container-fluid px-3">
+
+        {/* Logo */}
+        <Link
+          className="navbar-brand fw-semibold"
+          to="/dashboard"
+        >
           Job Tracker
         </Link>
 
-        <div className="navbar-nav ms-auto align-items-center">
-          <Link className="nav-link" to="/dashboard">
+        {/* Navigation */}
+        <div className="d-flex align-items-center flex-wrap">
+
+          <Link
+            className="nav-link text-white px-2 px-md-3"
+            to="/dashboard"
+          >
             Dashboard
           </Link>
 
-          <Link className="nav-link" to="/jobs">
+          <Link
+            className="nav-link text-white px-2 px-md-3"
+            to="/jobs"
+          >
             Jobs
           </Link>
 
-          <Link className="nav-link" to="/profile">
+          <Link
+            className="nav-link text-white px-2 px-md-3"
+            to="/profile"
+          >
             Profile
           </Link>
 
-          <span className="navbar-text text-white mx-3">
+          <span className="navbar-text text-white px-2 px-md-3">
             Hi, {user?.name}
           </span>
 
@@ -44,8 +61,11 @@ function Navbar() {
           >
             Logout
           </button>
+
         </div>
+
       </div>
+
     </nav>
   );
 }
